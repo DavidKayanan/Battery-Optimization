@@ -36,7 +36,7 @@ Parameters:
   
 Constraints:
   - Charge balance          Et+1 = Et + (eff_ch*Pch_t - Pdis_t/eff_dis)*delta_t
-  - Charge XOR Discharge    Pch_t/Pr + (1-b_t) <= 1
+  - Charge XOR Discharge    Pch_t/Pr + (1-b_t) <= 1,
                             Pdis_t/Pr + b_t <= 1
   - Restore initial charge  Init E = final E (but these two are decision variables)
   
