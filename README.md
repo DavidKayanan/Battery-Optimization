@@ -5,6 +5,12 @@ SIMPLE BATTERY ENERGY ARBITRAGE MODEL
 Given a 24h hourly price profile, this demo optimizes the performance of the Tesla Powerwall to perform energy arbitrage 
 (just one way a battery could provide value).
 
+DEPENDENCIES
+  - Python 3.6
+  - Gurobi Python API 8.1
+  - Pandas 0.23.4
+  - Matplotlib 3.0.1
+  - Seaborn 0.9.0
 
 OPTIMIZATION FORMULATION
 
