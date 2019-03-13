@@ -17,8 +17,10 @@ OPTIMIZATION FORMULATION
 MIP, with a binary variable per hour to decide whether the battery should charge or discharge.
 
 Decision variables:
-  E     stored charge [kWh],       Er*(1-DoD) < E < Er
-  Pch   Charging power [kW],       0 < Pch < Pr
+  - E     stored charge [kWh],       Er*(1-DoD) < E < Er
+  - Pch   Charging power [kW],       0 < Pch < Pr
+  
+  
   Pdis  Discharge power [kW],      0 < Pdis < Pr
   b     Charge/discharge decision (1 means charge)
   
