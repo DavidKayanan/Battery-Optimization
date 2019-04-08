@@ -1,9 +1,8 @@
 # Battery-Optimization
-
+(full documentation coming up)
 SIMPLE BATTERY ENERGY ARBITRAGE MODEL
 
-Given a 24h hourly price profile, this demo optimizes the performance of the Tesla Powerwall to perform energy arbitrage 
-(just one way a battery could provide value).
+This project allows you to valuate a grid scale battery's financial performance in your target market. You just need the price profile (preferrably over 1 year).
 
 DEPENDENCIES
   - Python 3.6
