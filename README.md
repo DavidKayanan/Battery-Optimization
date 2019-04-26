@@ -35,13 +35,6 @@ Decision Variable | Description | Notes
   _delta_t_ | Time step (1h in this case)
   **Price** | Electricity price [USD/kWh]
   
-  Constraints |  &nbsp;
-  ------------ | -------------
-  Charge balance | Et+1 = Et + (_eff_ch_* Pch_t - Pdis_t/_eff_dis_)* _delta_t_
-  Charge XOR Discharge | Pch_t/_Pr_ + (1-b_t) <= 1,  
-  Pdis_t/_Pr_ + b_t <= 1
-  Restore initial charge | Init E = final E (but these two are decision variables)
-  
   <table>
     <thead>
         <tr>
@@ -52,24 +45,21 @@ Decision Variable | Description | Notes
     <tbody>
         <tr>         
             <td>Charge balance</td>
-            <td>Et+1 = Et + (_eff_ch_* Pch_t - Pdis_t/_eff_dis_)* _delta_t_</td>
+            <td>Et+1 = Et + (<i>eff_ch</i>* Pch_t - Pdis_t/<i>eff_dis</i>)* <i>delta_t</i></td>
         </tr>
         <tr>
             <td rowspan=2>Charge XOR Discharge</td>
             <td>Pch_t/ <i>Pr</i> + (1-b_t) <= 1 </td>
         </tr>
         <tr>
-            <td>Pdis_t/ _Pr_ + b_t <= 1</td>
+            <td>Pdis_t/ <i>Pr</i> + b_t <= 1 </td>
         </tr>
         <tr>
           <td> Restore initial charge </td>
           <td> Init E = final E (but these two are decision variables) </td>
         </tr>
-      
-      
-      
     </tbody>
 </table>
 
-**Objective**  
-**max** sum(Price(Pdis-Pch)* delta_t) for all t in period
+**Objective**    
+**max** sum(Price(Pdis-Pch)* _delta_t_) for all t in period
