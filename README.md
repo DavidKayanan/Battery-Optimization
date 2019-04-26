@@ -86,5 +86,5 @@ Currently, only the CAISO format is defined (class `CAISO`, with a predefined in
 1. Time is inferred by providing the start time when you load prices.  
 `battery.set_prices(Prices_CAISO['USD/kWh'], start_time=("01/01/2018", 1), market_time=CA_time)`
 1. Whereas local time may switch timezones during DST, the time vector can be defined on a specified time zone (GMT, in this case). The Python index of `self.prices` then corresponds 1:1 on a GMT-based time vector.
-1. It is then up to the market time implementation to convert GMT time into the local time (consider formats (i.e. H00-H23 or H01-H24), and DST). Class `batopt` defines methods `Market_toIdx()` and `Idx_toMarket` for this, which wraps methods of the market time implementation.
+1. It is then up to the market time implementation to convert GMT time into the local time (consider formats (i.e. H00-H23 or H01-H24), and DST). Class `batopt` defines methods `Market_toIdx()` and `Idx_toMarket()` for this, which wraps methods of the market time implementation.
 
