@@ -2,7 +2,13 @@
 
 ### SIMPLE BATTERY ENERGY ARBITRAGE MODEL
 
-This project allows you to valuate a grid scale battery's financial performance in your target market. You just need the price profile (preferrably over 1 year).
+This project allows you to valuate a grid scale battery's financial performance in your target market. You just need the price profile (preferrably over 1 year). The Jupyter notebook "Tesla Power Pack valuation in CAISO" walks you through how this project is used, and also includes all the plotting and analysis functionalities developed.
+
+#### Features
+1. Given a price vector, optimize a battery performing energy arbitrage only.
+1. The net earnings is determine, and can be broken down to energy revenue and costs per month.
+1. The 24h operation of the battery on a particular day can be viewed (along with prices)
+1. A simple financial analysis is scripted at the end, assuming fixed revenues and costs. Use the indicative values for energy revenue and costs, and assume a revenue for ancilliary services.
 
 #### DEPENDENCIES
   - Python 3.6
@@ -13,7 +19,7 @@ This project allows you to valuate a grid scale battery's financial performance 
 
 #### OPTIMIZATION FORMULATION
 
-MIP, with a binary variable per hour to decide whether the battery should charge or discharge.
+MIP, with a binary variable per time step to decide whether the battery should charge or discharge. Gurobi is able to solve the 1-year MIP by cutting the root node, without descending the search tree.
 
 Decision Variable | Description | Notes
 ------------ | ------------- | -------------
@@ -34,6 +40,8 @@ Decision Variable | Description | Notes
   _eff_dis_ | Discharging efficiency (cycle effciency = _eff_ch_* _eff_dis_)
   _delta_t_ | Time step (1h in this case)
   **Price** | Electricity price [USD/kWh]
+  
+  The first five parameters define the battery, and are stored in the `BatteryDefns` DataFrame (for simplicity, the cycle efficiency is the saved parameter, with the assumption that _eff_ch_ =  _eff_dis_).
   
   <table>
     <thead>
