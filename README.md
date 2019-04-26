@@ -35,7 +35,7 @@ Decision Variable | Description | Notes
   _delta_t_ | Time step (1h in this case)
   **Price** | Electricity price [USD/kWh]
   
-  Constraints |  
+  Constraints |  Expressed as
   ------------ | -------------
   Charge balance | Et+1 = Et + (_eff_ch_* Pch_t - Pdis_t/_eff_dis_)* _delta_t_
   Charge XOR Discharge | Pch_t/_Pr_ + (1-b_t) <= 1, Pdis_t/_Pr_ + b_t <= 1
