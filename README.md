@@ -4,14 +4,14 @@
 
 This project allows you to valuate a grid scale battery's financial performance in your target market. You just need the price profile (preferrably over 1 year).
 
-##### DEPENDENCIES
+#### DEPENDENCIES
   - Python 3.6
   - Gurobi Python API 8.1
   - Pandas 0.23.4
   - Matplotlib 3.0.1
   - Seaborn 0.9.0
 
-##### OPTIMIZATION FORMULATION
+#### OPTIMIZATION FORMULATION
 
 MIP, with a binary variable per hour to decide whether the battery should charge or discharge.
 
@@ -22,7 +22,7 @@ Decision Variable | Description | Notes
 **Pdis**| Discharge power [kW]| 0 < **Pdis** < _Pr_
 **b** | Charge/discharge decision| (1 means charge)
 
-  Pch, Pdis and b are vectors of with the same length as the price vector, whereas E is of this length +1 to include the final charge. The initial charge must be restored at the end to remove bias.
+  **Pch**, **Pdis** and **b** are vectors of with the same length as the price vector, whereas **E** is of this length +1 to include the final charge. The initial charge must be restored at the end to remove bias.
   
   
   Parameters | Description
@@ -35,11 +35,41 @@ Decision Variable | Description | Notes
   _delta_t_ | Time step (1h in this case)
   **Price** | Electricity price [USD/kWh]
   
-  Constraints |  Expressed as
+  Constraints |  &nbsp;
   ------------ | -------------
   Charge balance | Et+1 = Et + (_eff_ch_* Pch_t - Pdis_t/_eff_dis_)* _delta_t_
-  Charge XOR Discharge | Pch_t/_Pr_ + (1-b_t) <= 1, Pdis_t/_Pr_ + b_t <= 1
+  Charge XOR Discharge | Pch_t/_Pr_ + (1-b_t) <= 1,  
+  Pdis_t/_Pr_ + b_t <= 1
   Restore initial charge | Init E = final E (but these two are decision variables)
   
-Objective:
-  **max** sum(Price(Pdis-Pch)* delta_t) for all t in period
+  <table>
+    <thead>
+        <tr>
+            <th>Constraints</th>
+            <th>&nbsp; </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>         
+            <td>Charge balance</td>
+            <td>Et+1 = Et + (_eff_ch_* Pch_t - Pdis_t/_eff_dis_)* _delta_t_</td>
+        </tr>
+        <tr>
+            <td rowspan=2>Charge XOR Discharge</td>
+            <td>Pch_t/ <i>Pr</i> + (1-b_t) <= 1 </td>
+        </tr>
+        <tr>
+            <td>Pdis_t/ _Pr_ + b_t <= 1</td>
+        </tr>
+        <tr>
+          <td> Restore initial charge </td>
+          <td> Init E = final E (but these two are decision variables) </td>
+        </tr>
+      
+      
+      
+    </tbody>
+</table>
+
+**Objective**  
+**max** sum(Price(Pdis-Pch)* delta_t) for all t in period
