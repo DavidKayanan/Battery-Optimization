@@ -2,7 +2,7 @@
 
 ### SIMPLE BATTERY ENERGY ARBITRAGE MODEL
 
-This project allows you to **valuate a grid scale battery's financial performance** in your target market. You just need the price profile (preferrably over 1 year). The Jupyter notebook "Tesla Power Pack valuation in CAISO" walks you through how this project is used, and also includes all the plotting and analysis functionalities developed.
+This project allows you to **valuate a grid scale battery's financial performance** in your target market. You just need the price profile (preferrably over 1 year). The Jupyter notebook "Tesla Power Pack valuation in CAISO.ipynb" walks you through how this project is used, and also includes all the plotting and analysis functionalities developed.
 
 ##### Features
 1. Given a price vector, optimize a battery performing energy arbitrage only.
@@ -83,8 +83,8 @@ Currently, only the CAISO format is defined (class `CAISO`, with a predefined in
 
 **Basic idea behind market time**
 1. The price vector in batopt's `self.prices` is interpretted as an iterable *without* time information (if this is a Pandas Series, the index is not used).
-1. Time is inferred by providing the start time when you load prices.  
+1. Time is *inferred* by providing the start time when you load prices.  
 `battery.set_prices(Prices_CAISO['USD/kWh'], start_time=("01/01/2018", 1), market_time=CA_time)`
-1. Whereas local time may switch timezones during DST, the time vector can be defined on a specified time zone (GMT, in this case). The Python index of `self.prices` then corresponds 1:1 on a GMT-based time vector.
+1. Whereas local time may switch timezones during DST, the time vector can be defined on a *fixed* time zone (GMT, in this case). The Python index of `self.prices` then corresponds 1:1 on a GMT-based time vector.
 1. It is then up to the market time implementation to convert GMT time into the local time (consider formats (i.e. H00-H23 or H01-H24), and DST). Class `batopt` defines methods `Market_toIdx()` and `Idx_toMarket()` for this, which wraps methods of the market time implementation.
 
