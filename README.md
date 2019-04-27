@@ -25,9 +25,9 @@ MIP, with a binary variable per time step to decide whether the battery should c
 
 Decision Variable | Description | Notes
 ------------ | ------------- | -------------
-**E** | stored charge [kWh] | _Er_* (1-_DoD_) < **E** < _Er_
-**Pch** | Charging power [kW] | 0 < **Pch** < _Pr_
-**Pdis**| Discharge power [kW]| 0 < **Pdis** < _Pr_
+**E** | stored charge [kWh] | _Er_* (1-_DoD_) < E < _Er_
+**Pch** | Charging power [kW] | 0 < Pch < _Pr_
+**Pdis**| Discharge power [kW]| 0 < Pdis < _Pr_
 **b** | Charge/discharge decision| (1 means charge)
 
   **Pch**, **Pdis** and **b** are vectors of with the same length as the price vector, whereas **E** is of this length +1 to include the final charge. The initial charge must be restored at the end to remove bias.
@@ -76,9 +76,9 @@ Decision Variable | Description | Notes
 
 ___
 #### 3 MARKET TIME IMPLEMENTATION
-batopt.py depends on markettime.py `import markettime as mt`, which holds the classes to implement various time formats. For more information on the market time protocol, pls. refer to "markettime protocol.ipynb", as well as further below.
+batopt.py imports markettime.py, which holds the classes to implement various time formats. For more information on the market time protocol, pls. refer to "markettime protocol.ipynb", as well as further below.
 
-**CAISO Time Format**
+**CAISO Time Format**  
 Currently, only the CAISO format is defined (class `CAISO`, with a predefined instance `CA_time` loaded in batopt.py). The CAISO format defines a 24-hour market, starting from H01-H24, and implements DST switches with a 23-hour day on the switch to summer and a 25-hour day on the switch back to winter (defining H25, the very last hour of summer time). To define your own time in the CAISO format, pls. refer to the initialization of `CA_time` in cell 2 of "markettime protocol.ipynb".
 
 **Basic idea behind market time**
